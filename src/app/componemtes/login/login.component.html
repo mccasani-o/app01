@@ -1,0 +1,30 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card p-4 shadow-sm" style="width: 22rem;">
+    <h2 class="text-center mb-4">Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <!-- Email Input -->
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter your email" />
+      </div>
+
+      <!-- Password Input -->
+      <div class="mb-3">
+        <label for="clave" class="form-label">Clave</label>
+        <input type="password" class="form-control" id="clave" formControlName="clave"
+          placeholder="Enter your password" />
+      </div>
+
+      <!-- Submit Button  -->
+      <button type="submit" class="btn btn-primary w-100" [disabled]="loginForm.invalid">Login</button>
+
+    </form>
+    <!-- Forgot Password and Register Links -->
+    <div class="text-center mt-3">
+      <a href="/forgot-password" class="text-decoration-none">Olvidé mi contraseña</a>
+    </div>
+    <div class="text-center mt-2">
+      <a href="/register" class="text-decoration-none">Registrar una nueva membresía</a>
+    </div>
+  </div>
+</div>

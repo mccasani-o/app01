@@ -1,0 +1,72 @@
+
+  
+  <nav class="navbar navbar-expand-lg bg-body-tertiary" >
+    <div class="container">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <!-- Iterar sobre los menús principales -->
+        @for (menu of menus; track $index) {
+          @if (menu.items && menu.items.length > 0) {
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" 
+                [routerLink]="menu.url || '#'"
+                role="button" 
+                data-bs-toggle="dropdown" 
+                aria-expanded="false">
+                <i [class]="menu.icon"></i> {{ menu.label }}
+              </a>
+              <ul class="dropdown-menu">
+                <!-- Submenús -->
+                @for (item of menu.items; track $index) {
+                  @if (item.items && item.items.length > 0) {
+                    <li class="nav-item dropend">
+                      <a class="dropdown-item dropdown-toggle" 
+                        [routerLink]="item.url || '#'" 
+                        role="button" 
+                        data-bs-toggle="dropdown" 
+                        aria-expanded="false">
+                        <i [class]="item.icon"></i> {{ item.label }}
+                      </a>
+                      <ul class="dropdown-menu">
+                        @for (subItem of item.items; track $index) {
+                          <li>
+                            <a class="dropdown-item" 
+                              [routerLink]="subItem.url || '#'" 
+                              routerLinkActive="active">
+                              <i [class]="subItem.icon"></i> {{ subItem.label }}
+                            </a>
+                          </li>
+                        }
+                      </ul>
+                    </li>
+                  } @else {
+                    <li>
+                      <a class="dropdown-item" 
+                        [routerLink]="item.url || '#'" 
+                        routerLinkActive="active">
+                        <i [class]="item.icon"></i> {{ item.label }}
+                      </a>
+                    </li>
+                  }
+                }
+              </ul>
+            </li>
+          } @else {
+            <li class="nav-item">
+              <a class="nav-link" 
+                [routerLink]="menu.url || '#'" 
+                routerLinkActive="active">
+                <i [class]="menu.icon"></i> {{ menu.label }}
+              </a>
+            </li>
+          }
+        }
+      </ul>
+      <!-- Botón de cerrar sesión -->
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" (click)="logout()">Cerrar Sesión</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  

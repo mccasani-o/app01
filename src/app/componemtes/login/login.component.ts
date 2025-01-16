@@ -17,6 +17,7 @@ import { LocalStorageService } from '../../service/local-storage.service';
   styleUrl: './login.component.css',
 })
 export default class LoginComponent {
+
   loginForm: FormGroup;
   errorMessage: string | null = null;
 
@@ -44,5 +45,9 @@ export default class LoginComponent {
           this.loginService.removeToken();
       },
     });
+  }
+
+  goToRegister() {
+    this.router.navigate(['/register']);
   }
 }

@@ -10,6 +10,10 @@ import {
 } from '@angular/common/http';
 import { tokenInterceptor } from './core/token.interceptor';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideAnimations } from '@angular/platform-browser/animations';
+
+import { provideToastr } from 'ngx-toastr';
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -19,5 +23,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch()),
     provideAnimationsAsync(),
     provideHttpClient(withInterceptors([tokenInterceptor])),
+    provideAnimations(), // required animations providers
+    provideToastr({timeOut: 9000, preventDuplicates: true}), // Toastr providers
   ],
 };

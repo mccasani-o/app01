@@ -61,7 +61,7 @@
       }
     </ul>
     <!-- Botón para enviar los cambios al backend -->
-    <button class="btn btn-primary mt-3" (click)="enviarEstadoAlBackend()">
+    <button class="btn btn-primary mt-3" (click)="enviarEstadoAlBackend()" [disabled]="!hayCambios">
       Enviar Cambios
     </button>
   </div>

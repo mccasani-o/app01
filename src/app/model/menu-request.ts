@@ -1,5 +1,11 @@
-import { EstadoRequests } from "./estado-requests";
+
+export interface EstadoRequests {
+    id: number;
+    estado: boolean;
+}
 
 export interface MenuRequest {
     estadoRequests: EstadoRequests[];
 }
+
+

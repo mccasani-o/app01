@@ -9,19 +9,26 @@ export const AuthGuard: CanMatchFn = (
 ): MaybeAsync<GuardResult> => {
   const loginService = inject(LoginService);
   const router = inject(Router);
-
+  // Evitar redirección infinita si ya estás en la página de login
+  const isLoginPage = segments.some((segment) => segment.path === 'login');
+  const isRegisterPage = segments.some(
+    (segment) => segment.path === 'register'
+  );
   return loginService.authToken$.pipe(
-   
     map((token) => {
+      console.log('token... ', token);
+
+      if (isLoginPage) {
+        loginService.removeToken();
+        return false; // Bloquea el acceso a la página protegida desde 'login'
+      }
+      if (isRegisterPage) {
+        loginService.removeToken();
+        return false;
+      }
       // Si hay un token, se permite el acceso
       if (token) {
         return true;
-      }
-
-      // Evitar redirección infinita si ya estás en la página de login
-      const isLoginPage = segments.some((segment) => segment.path === 'login');
-      if (isLoginPage) {
-        return false; // Bloquea el acceso a la página protegida desde 'login'
       }
 
       // Redirigir al login si no hay token

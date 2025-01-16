@@ -5,6 +5,7 @@ import { environment } from '../../environments/environment';
 import { BehaviorSubject, Observable, of, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { jwtDecode } from "jwt-decode";
+import { UsuarioRegistro } from '../model/usuario-registro';
 
 @Injectable({
   providedIn: 'root',
@@ -40,6 +41,11 @@ export class LoginService {
           }
         })
       );
+  }
+
+  registrarUsuario(usuario: UsuarioRegistro): Observable<any> {
+    console.log('REQUEST: ', usuario);
+    return this.http.post(`${environment.API_URL}/usuarios/registro`, usuario);
   }
 
   /**

@@ -1,0 +1,51 @@
+
+
+<div class="row g-2">
+    <div class="col-md">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="goToRegisterProducto()">
+            <i class="bi bi-plus-circle-fill"></i>
+        </button>
+        
+    </div>
+    <div class="col-md">
+    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Buscar producto">
+    </div>
+  </div>
+
+
+<p-table [value]="productos" [paginator]="true" [rows]="5" [first]="first" [showCurrentPageReport]="true"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" (onPage)="pageChange($event)"
+    [rowsPerPageOptions]="[10, 25, 50]">
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="width:5%">Código</th>
+            <th style="width:10%">Nombre</th>
+            <th style="width:25%">Descripción</th>
+            <th style="width:15%">Precio Compra</th>
+            <th style="width:15%">Precio Venta</th>
+            <th style="width:10%">Stock</th>
+            <th style="width:10%">Acción</th>
+
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+        <tr>
+            <td>{{ product.idProducto }}</td>
+            <td>{{ product.nombreProducto }}</td>
+            <td>{{ product.descripcion }}</td>
+            <td>{{ product.precioCompra }}</td>
+            <td>{{ product.precioVenta }}</td>
+            <td>{{ product.stockActual }}</td>
+            <td> <button class="btn btn-danger" type="button"><i class="bi bi-trash-fill"></i></button> |
+                <button class="btn btn-primary" type="button"><i class="bi bi-pencil-square"></i></button>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="paginatorleft">
+        <p-button type="button" icon="pi pi-plus" styleClass="p-button-text" />
+    </ng-template>
+    <ng-template pTemplate="paginatorright">
+        <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text" />
+    </ng-template>
+</p-table>

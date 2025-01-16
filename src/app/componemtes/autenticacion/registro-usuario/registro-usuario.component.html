@@ -1,0 +1,34 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card p-4 shadow-sm" style="width: 22rem;">
+      <h2 class="text-center mb-4">Registro Usuario</h2> 
+      <form [formGroup]="registroForm" (ngSubmit)="registrar()">
+
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombres</label>
+            <input type="text" class="form-control" id="nombre" formControlName="nombre" placeholder="Ingresa tu nombre" />
+          </div>
+
+  
+        <div class="mb-3">
+            <label for="apellido" class="form-label">Apellidos</label>
+            <input type="text" class="form-control" id="apellido" formControlName="apellido" placeholder="Ingresa tu apellido" />
+          </div>
+        <!-- Email Input -->
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" formControlName="email" placeholder="Ingresa tu email" />
+        </div>
+  
+        <!-- Password Input -->
+        <div class="mb-3">
+          <label for="clave" class="form-label">Clave</label>
+          <input type="password" class="form-control" id="clave" formControlName="clave"
+            placeholder="Ingresa tu clave" />
+        </div>
+  
+        <!-- Submit Button  -->
+        <button type="submit" class="btn btn-primary w-100" [disabled]="registroForm.invalid">Login</button>
+      
+      </form>
+    </div>
+  </div>

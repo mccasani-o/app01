@@ -22,7 +22,23 @@ export const routes: Routes = [
         data:{roles:['ROLE_ADMIN']},
         loadComponent: () => import('./componemtes/venta/generar-venta/generar-venta.component'),
       },
+      {
+        path: 'producto/lista-producto',
+        canActivate: [HasRolGuard],
+        data:{roles:['ROLE_ADMIN']},
+        loadComponent: () => import('./componemtes/enventario/producto/producto.component'),
+      },
+      {
+        path: 'producto/registro',
+    
+        loadComponent: () => import('./componemtes/enventario/producto/registro/registro.component'),
+      }
     ],
+  },
+  {
+    path: 'register',
+    loadComponent: () => import('./componemtes/autenticacion/registro-usuario/registro-usuario.component'),
+   
   },
   {
     path: 'login',
